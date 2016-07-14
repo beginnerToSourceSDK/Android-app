@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     Button button;
     Double sizem, sizemi, Range;
 
-    public static double round(double value, int places) {
+    public static double round(double value, int places) { // rounding function
         if (places < 0) throw new IllegalArgumentException();
 
         BigDecimal bd = new BigDecimal(value);
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         textView3 = (TextView) findViewById(R.id.textView3);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) {    // protect against null exeption
                 if (editText.getText().length() == 0) {
                     textView3.setText("Enter some data");
                 }
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                     Double adjust = correction / drop; // Output data
                     adjust = round(adjust, 2);
                     textView3 = (TextView) findViewById(R.id.textView3);
-                    textView3.setText("Range: " + Range + " yards. windage MOA: " + MOAWind + ". Adjust recticle " + adjust + " MOA with " + drop + " Inches per MOA.");
+                    textView3.setText("Range: " + Range + " yards. windage MOA: " + MOAWind + ". Adjust recticle " + adjust + " MOA with " + drop + " Inches per MOA."); // print corrections
                 }
             }
         });
