@@ -42,28 +42,33 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    sizem = Double.parseDouble(editText.getText().toString());
-                    sizemi = Double.parseDouble(editText2.getText().toString());
-                    Double wind = Double.parseDouble(editText3.getText().toString());
-
-                } catch (NumberFormatException e) {
-                    Double Range = sizem * 27.77 / sizemi;
-                    Range = 1.0;
+                if (editText.getText().length() == 0) {
+                    textView3.setText("Enter some data");
                 }
-
-                Double wind = Double.parseDouble(editText3.getText().toString());
-                Double correction = Double.parseDouble(editText5.getText().toString());
-                Range = sizem * 27.77 / sizemi;
-                Range = round(Range, 2);
-                Double MOAWind = Range / 100 * wind / 15;
-                MOAWind = round(MOAWind, 2);
-                Double drop = Range / 100;
-                drop = round(drop, 2);
-                Double RCWind = correction / drop;
-                RCWind = round(RCWind, 2);
-                textView3 = (TextView) findViewById(R.id.textView3);
-                textView3.setText("Range: "+ Range +" yards. windage MOA: " + MOAWind + ". Adjust recticle " + RCWind + " MOA with "+ drop +" Inches per MOA.");
+                if (editText2.getText().length() == 0) {
+                    textView3.setText("Enter some data");
+                }
+                if (editText3.getText().length() == 0) {
+                    textView3.setText("Enter some data");
+                }
+                if (editText5.getText().length() == 0) {
+                    textView3.setText("Enter some data");
+                } else {
+                    sizem = Double.parseDouble(editText2.getText().toString());
+                    sizemi = Double.parseDouble(editText.getText().toString());
+                    Double wind = Double.parseDouble(editText3.getText().toString());
+                    Double correction = Double.parseDouble(editText5.getText().toString());
+                    Range = sizem * 27.77 / sizemi;
+                    Range = round(Range, 2);
+                    Double MOAWind = Range / 100 * wind / 15;
+                    MOAWind = round(MOAWind, 2);
+                    Double drop = Range / 100;
+                    drop = round(drop, 2);
+                    Double adjust = correction / drop;
+                    adjust = round(adjust, 2);
+                    textView3 = (TextView) findViewById(R.id.textView3);
+                    textView3.setText("Range: " + Range + " yards. windage MOA: " + MOAWind + ". Adjust recticle " + adjust + " MOA with " + drop + " Inches per MOA.");
+                }
             }
         });
     }
