@@ -58,13 +58,13 @@ public class MainActivity extends AppCompatActivity {
                     sizemi = Double.parseDouble(editText.getText().toString());
                     Double wind = Double.parseDouble(editText3.getText().toString());
                     Double correction = Double.parseDouble(editText5.getText().toString());
-                    Range = sizem * 27.77 / sizemi;
+                    Range = sizem * 27.77 / sizemi; // formula for distance to target.
                     Range = round(Range, 2);
-                    Double MOAWind = Range / 100 * wind / 15;
+                    Double MOAWind = Range / 100 * wind / 15; // formula for wind compensation.
                     MOAWind = round(MOAWind, 2);
-                    Double drop = Range / 100;
+                    Double drop = Range / 100; // break the distance into 100's of yards
                     drop = round(drop, 2);
-                    Double adjust = correction / drop;
+                    Double adjust = correction / drop; // Output data
                     adjust = round(adjust, 2);
                     textView3 = (TextView) findViewById(R.id.textView3);
                     textView3.setText("Range: " + Range + " yards. windage MOA: " + MOAWind + ". Adjust recticle " + adjust + " MOA with " + drop + " Inches per MOA.");
